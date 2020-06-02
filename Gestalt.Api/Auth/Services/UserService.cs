@@ -24,8 +24,8 @@ namespace Gestalt.Api.Auth.Services
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
         private readonly List<User> _users = new List<User>
         {
-            new User {Id = 1, FirstName = "admin", LastName = "admin", Username = "admin", Password = "admin"},
-            new User {Id = 2, FirstName = "test", LastName = "test", Username = "test", Password = "test"}
+            new User { Id = 1, FirstName = "admin", LastName = "admin", Username = "admin", Password = "admin" },
+            new User { Id = 2, FirstName = "test", LastName = "test", Username = "test", Password = "test" }
         };
 
         public UserService(IOptions<AppSettings> appSettings)
@@ -48,8 +48,10 @@ namespace Gestalt.Api.Auth.Services
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Name, user.Username)
+                    new Claim("id", user.Id.ToString()),
+                    new Claim("username", user.Username),
+                    new Claim("firstName", user.FirstName),
+                    new Claim("lastName", user.LastName)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),

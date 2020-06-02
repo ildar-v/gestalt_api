@@ -1,0 +1,11 @@
+﻿{
+  "profiles": {
+    "Gestalt.Api": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "FRONTEND_URL": "http://localhost:8082"
+      }
+    }
+  }
+}

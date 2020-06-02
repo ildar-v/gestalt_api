@@ -10,7 +10,7 @@ namespace Gestalt.Api.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
 
         public UsersController(IUserService userService)
         {
@@ -25,7 +25,7 @@ namespace Gestalt.Api.Controllers
 
             if (user == null)
             {
-                return BadRequest(new {message = "Invalid username or password."});
+                return BadRequest(new { message = "Invalid username or password." });
             }
 
             return Ok(user);

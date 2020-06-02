@@ -2,3 +2,4 @@ obj/
 .vscode/
 bin/
 .idea/
+Gestalt.Api/appsettings.json

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestalt.Api", "Gestalt.Api\Gestalt.Api.csproj", "{9F16F8A0-888C-4582-B7B0-2298CECEE44B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestalt.Common", "..\gestalt_backend_common\Gestalt.Common\Gestalt.Common.csproj", "{2BCE4752-59C0-4B87-81AC-65DD4BCE97D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestalt.Common.DAL", "..\gestalt_backend_common\Gestalt.Common.DAL\Gestalt.Common.DAL.csproj", "{0454F21C-171A-45C4-AA0B-7BFA2599FA0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F16F8A0-888C-4582-B7B0-2298CECEE44B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F16F8A0-888C-4582-B7B0-2298CECEE44B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F16F8A0-888C-4582-B7B0-2298CECEE44B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F16F8A0-888C-4582-B7B0-2298CECEE44B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BCE4752-59C0-4B87-81AC-65DD4BCE97D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BCE4752-59C0-4B87-81AC-65DD4BCE97D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BCE4752-59C0-4B87-81AC-65DD4BCE97D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BCE4752-59C0-4B87-81AC-65DD4BCE97D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0454F21C-171A-45C4-AA0B-7BFA2599FA0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0454F21C-171A-45C4-AA0B-7BFA2599FA0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0454F21C-171A-45C4-AA0B-7BFA2599FA0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0454F21C-171A-45C4-AA0B-7BFA2599FA0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

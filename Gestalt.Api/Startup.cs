@@ -8,6 +8,8 @@ using Microsoft.OpenApi.Models;
 
 namespace Gestalt.Api
 {
+    using Gestalt.Common.DAL;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -25,6 +27,8 @@ namespace Gestalt.Api
             services.AddControllersWithViews().AddNewtonsoftJson();
 
             services.AddAuth(Configuration);
+
+            services.AddMongo(Configuration);
 
             services.AddSwaggerGen(c =>
             {
