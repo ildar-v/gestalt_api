@@ -8,12 +8,13 @@ namespace Gestalt.Api
     {
         public static int GetCurrentUserId(this ControllerBase controller)
         {
-            if (controller.User.Identity is ClaimsIdentity claimsIdentity)
+            if (!(controller.User.Identity is ClaimsIdentity claimsIdentity))
             {
-                var identifierClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-                return int.Parse(identifierClaim.Value);
+                throw new System.Exception(Constants.NotAuthorizedExceptionMessage);
             }
-            throw new System.Exception(Constants.NotAuthorizedExceptionMessage);
+
+            var identifierClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            return int.Parse(identifierClaim.Value);
         }
     }
 }

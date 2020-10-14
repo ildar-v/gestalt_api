@@ -1,29 +1,41 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Gestalt.Api.Models;
+using Gestalt.Api.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Gestalt.Api.Controllers
 {
-    using System.Threading.Tasks;
-    using Gestalt.Common.DAL.Entities;
-    using Gestalt.Common.DAL.MongoDBImpl;
-    using Microsoft.AspNetCore.Authorization;
-
     [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
     public class RequestController : Controller
     {
-        private readonly IMongoRepository<MainResponseEntity> _mainResponseRepository;
+        private readonly RequestsCache _requestsCache;
 
-        public RequestController(IMongoRepository<MainResponseEntity> mainResponseRepository)
+        public RequestController(RequestsCache requestsCache)
         {
-            _mainResponseRepository = mainResponseRepository;
+            _requestsCache = requestsCache;
         }
-        
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+
+        [HttpPost]
+        public async Task<IActionResult> Post(
+            float startLatitude,
+            float startLongitude,
+            float endLatitude,
+            float endLongitude)
         {
-            var requests = await _mainResponseRepository.FindAsync();
-            return Ok(requests);
+            var requestsFilter = new RequestsFilter
+            {
+                StartLatitude = startLatitude,
+                StartLongitude = startLongitude,
+                EndLatitude = endLatitude,
+                EndLongitude = endLongitude
+            };
+
+            var result = await _requestsCache.RequestEntities(requestsFilter);
+
+            return Ok(result);
         }
     }
 }

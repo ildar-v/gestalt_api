@@ -1,5 +1,7 @@
 using System;
 using Gestalt.Api.Middlewares;
+using Gestalt.Api.Services;
+using Gestalt.Common.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,8 +10,6 @@ using Microsoft.OpenApi.Models;
 
 namespace Gestalt.Api
 {
-    using Gestalt.Common.DAL;
-
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -30,10 +30,9 @@ namespace Gestalt.Api
 
             services.AddMongo(Configuration);
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            });
+            services.AddSingleton<RequestsCache>();
+
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
