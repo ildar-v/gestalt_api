@@ -18,6 +18,13 @@ namespace Gestalt.Api.Controllers
             _requestsCache = requestsCache;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var requests = await _requestsCache.RequestEntities(0, 30);
+            return Ok(requests);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(
             float startLatitude,

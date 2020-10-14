@@ -22,21 +22,6 @@ namespace Gestalt.Api.Services
 
         private List<RequestEntity> _requestEntities;
 
-        public async Task<List<RequestEntity>> RequestEntities()
-        {
-            if (_requestEntities != null)
-            {
-                return _requestEntities;
-            }
-
-            _logger.LogInformation("Starting caching requests...");
-            var sw = Stopwatch.StartNew();
-            _requestEntities = (await _requestRepository.FindAsync()).ToList();
-            _logger.LogInformation($"Caching requests ended in {sw.Elapsed:G}");
-
-            return _requestEntities;
-        }
-
         public async Task<List<RequestEntity>> RequestEntities(RequestsFilter filter)
         {
             var requests = await RequestEntities();
@@ -60,6 +45,29 @@ namespace Gestalt.Api.Services
                 .Where(x => requestNewIds.Contains(x.RequestId)).ToList();
 
             return requestsInRequiredArea.ToList();
+        }
+
+        public async Task<List<RequestEntity>> RequestEntities(int pageNumber, int pageSize)
+        {
+            return (await RequestEntities())
+                .Skip(pageNumber * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
+
+        private async Task<List<RequestEntity>> RequestEntities()
+        {
+            if (_requestEntities != null)
+            {
+                return _requestEntities;
+            }
+
+            _logger.LogInformation("Starting caching requests...");
+            var sw = Stopwatch.StartNew();
+            _requestEntities = (await _requestRepository.FindAsync()).ToList();
+            _logger.LogInformation($"Caching requests ended in {sw.Elapsed:G}");
+
+            return _requestEntities;
         }
     }
 }
